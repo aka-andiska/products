@@ -1,0 +1,36 @@
+<head>
+    <title></title>
+</head>
+<body>
+    <form action="/create" method="post">
+        {% csrf_token %}
+        <label for="name">Name: <input type="text" name="name"></label>
+        <label for="description">Description: <input type="text" name="description"></label>
+        <input type="submit" value="Create" />
+    </form>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Created at</th>
+                <th>Updated at</th>
+                <th>Actions</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.description }}</td>
+                    <td>{{ product.created_at }}</td>
+                    <td>{{ product.updated_at }}</td>
+                    <td><a href="/edit/{{ product.id }}"></a>Edit
+                    <a href="/delete/{{ product.id }}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
