@@ -27,4 +27,7 @@ def update(request, id):
     product.save()
     return redirect('/')
 
-
+def destroy(request, id):
+    product = Product.objects.get(id=id)
+    product.delete()
+    return redirect('/')
