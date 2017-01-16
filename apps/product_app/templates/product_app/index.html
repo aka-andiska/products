@@ -4,8 +4,8 @@
 <body>
     <form action="/create" method="post">
         {% csrf_token %}
-        <label for="name">Name: <input type="text" name="name"></label>
-        <label for="description">Description: <input type="text" name="description"></label>
+        <label for="name">Name: <input type="text" name="name" id="name" /></label>
+        <label for="description">Description: <input type="text" name="description" id="description" /></label>
         <input type="submit" value="Create" />
     </form>
     <table border="1">
@@ -26,7 +26,7 @@
                     <td>{{ product.description }}</td>
                     <td>{{ product.created_at }}</td>
                     <td>{{ product.updated_at }}</td>
-                    <td><a href="/edit/{{ product.id }}"></a>Edit
+                    <td><a href="/edit/{{ product.id }}">Edit</a>
                     <a href="/delete/{{ product.id }}">Delete</a>
                     </td>
                 </tr>
