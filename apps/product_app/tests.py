@@ -28,3 +28,15 @@ class PeroductMethodTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context['products']),2)
+    def test_edit(self):
+        """
+        edit should can editing data and get by id
+        """
+        products = Product.objects.all()
+        to_edit = Product.objects.filter(id=2)
+
+        response = self.client.post(reverse('index'))
+        self.assertEqual(response.status_code, 200)
+        self.assertNotIn(to_edit, products)
+
+        
