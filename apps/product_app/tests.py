@@ -18,4 +18,13 @@ class PeroductMethodTest(TestCase):
         self.assertEqual(response.context['products'][0], table)
         self.assertEqual(response.context['products'][1], chair)
 
-# Create your tests here.
+    def test_create(self):
+        """
+        crete should can creating new data and post in index
+        """
+        glass = Product.objects.create(name="glass", description="roar")
+        spoon = Product.objects.create(name="spoon", description="meow")
+        response = self.client.post(reverse('index'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(response.context['products']),2)
