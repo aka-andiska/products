@@ -1,7 +1,10 @@
 <head>
-    <title></title>
+    <title>Products</title>
 </head>
 <body>
+    <div>
+        <h1><a href=>Products Data</a></h1>
+    </div>
     <form action="/create" method="post">
         {% csrf_token %}
         <label for="name">Name: <input type="text" name="name" id="name" /></label>
