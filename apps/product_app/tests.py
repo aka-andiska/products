@@ -28,6 +28,7 @@ class PeroductMethodTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(response.context['products']),2)
+
     def test_edit(self):
         """
         edit should can editing data and get by id
@@ -39,4 +40,14 @@ class PeroductMethodTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertNotIn(to_edit, products)
 
-        
+    def test_update(self):
+        """
+        update can be post data to index after editing by id
+        """
+        products = Product.objects.all()
+        to_update = Product.objects.filter(id=1)
+
+        response = self.client.post(reverse('index'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertNotIn(to_update, products)
