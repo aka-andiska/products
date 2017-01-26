@@ -51,3 +51,11 @@ class PeroductMethodTest(TestCase):
 
         self.assertEqual(response.status_code, 200)
         self.assertNotIn(to_update, products)
+
+    def test_delete(self):
+        """
+        delete can deleting data by id
+        """
+        to_delete = Product.objects.filter(id=2)
+        products = Product.objects.all()
+        self.assertNotIn(to_delete, products)
