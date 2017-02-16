@@ -1,16 +1,18 @@
 from django.shortcuts import render, redirect
-from .models import Product
+from .models import Product, Category
 
 
 def index(request):
     products = Product.objects.all()
-    context = {'products': products}
+    category = Category.objects.all()
+    context = {'products': products, 'category': category}
+
     return render(request, 'product_app/index.html', context)
 
 
 def create(request):
-    print(request.POST)
-    product_app = Product(name=request.POST['name'], description=request.POST['description'])
+    category_instance = Category.objects.get(pk=request.POST['category'])
+    product_app = Product(name=request.POST['name'], description=request.POST['description'], category=category_instance)
     product_app.save()
     return redirect('/')
 
